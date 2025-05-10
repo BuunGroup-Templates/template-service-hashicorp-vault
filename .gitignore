@@ -1,0 +1,30 @@
+# Logs
+logs
+*.log
+
+# Runtime data
+*.pid
+*.seed
+*.state
+*.tfstate*
+crash.log
+
+# Env files
+.env
+.env.*
+!/.env.example
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Common binary/build output folders
+bin/
+dist/
+build/
+node_modules/ 
