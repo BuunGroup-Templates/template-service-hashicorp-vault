@@ -1,0 +1,36 @@
+job "vault" {
+  datacenters = ["dc1"]
+  type = "service"
+
+  group "vault" {
+    count = 1
+
+    task "vault" {
+      driver = "docker"
+
+      config {
+        image = "hashicorp/vault:latest"
+        ports = ["vault"]
+        volumes = [
+          "local/vault.hcl.example:/vault/config/vault.hcl",
+          "local/../common/certs:/vault/certs"
+        ]
+        args = ["server", "-config=/vault/config/vault.hcl"]
+      }
+
+      resources {
+        cpu    = 500
+        memory = 512
+        network {
+          port "vault" {
+            static = 8200
+          }
+        }
+      }
+
+      env {
+        VAULT_LOCAL_CONFIG = "# Use external config file instead for production"
+      }
+    }
+  }
+} 

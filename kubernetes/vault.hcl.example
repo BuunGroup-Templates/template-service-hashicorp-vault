@@ -1,0 +1,39 @@
+# Example Vault configuration for Kubernetes
+# Supports: file, raft, consul, etcd backends
+# Replace values as needed for your environment
+
+listener "tcp" {
+  address     = "0.0.0.0:8200"
+  tls_cert_file = "/vault/certs/vault.crt"
+  tls_key_file  = "/vault/certs/vault.key"
+  tls_disable   = 0
+}
+
+# Storage backend examples (uncomment one)
+
+# File backend (dev/test only)
+#storage "file" {
+#  path = "/vault/file"
+#}
+
+# Raft backend (recommended for HA)
+#storage "raft" {
+#  path    = "/vault/raft"
+#  node_id = "node1"
+#}
+
+# Consul backend
+#storage "consul" {
+#  address = "consul.default.svc.cluster.local:8500"
+#  path    = "vault/"
+#}
+
+# etcd backend
+#storage "etcd" {
+#  address = "https://etcd:2379"
+#  etcd_api = "v3"
+#  path    = "vault/"
+#}
+
+api_addr = "https://localhost:8200"
+ui = true 

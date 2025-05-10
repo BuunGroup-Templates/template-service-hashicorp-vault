@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vault-config
+  labels:
+    app: vault
+data:
+  vault.hcl: |
+    # See vault.hcl.example for full config options
+    # Copy your desired backend config here 

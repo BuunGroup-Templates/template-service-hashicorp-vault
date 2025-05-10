@@ -1,31 +1,33 @@
-# Template: Service - `{{SERVICE_NAME}}`
+# HashiCorp Vault Deployment Template
 
-A template for deploying generic services like Vault, Nomad, n8n, etc.
-
-## Overview
-
-This repository provides a basic structure for deploying a service.
-
-Replace `{{SERVICE_NAME}}` with the actual name of the service (e.g., Vault, Nomad).
+This repository provides a secure, production-ready template for deploying HashiCorp Vault using Docker, Nomad, or Kubernetes. It supports all major storage backends (Consul, Raft, File, etcd) and follows best security practices.
 
 ## Structure
 
-- `common/`: Contains shared configuration files, scripts, or certificates.
-- `docs/`: Documentation specific to this service deployment.
-- `.env.example`: Example environment variables.
-- `LICENSE`: The license for this template.
-- `README.md`: This file.
+- `docker/` — Docker Compose and config templates
+- `nomad/` — Nomad job spec and config templates
+- `kubernetes/` — Kubernetes manifests and config templates
+- `common/certs/` — Place your TLS certificates here (self-signed by default; replace for production)
 
-### Optional Deployment Methods:
+## Quick Start
 
-- `docker-compose/`: Contains files for deploying the service using Docker Compose.
-- `terraform-cloudinit/`: Contains Terraform and cloud-init files for deploying the service on a VM.
-- `helm-kubernetes/`: Contains a Helm chart for deploying the service to Kubernetes.
+1. **Choose your deployment method:**
+   - See `docker/`, `nomad/`, or `kubernetes/` for instructions and templates.
+2. **Select your storage backend:**
+   - Each config supports File, Raft, Consul, and etcd (see comments in `vault.hcl.example`).
+3. **Update TLS certificates:**
+   - Use your own CA-signed certs for production. Place them in `common/certs/` or use Kubernetes secrets.
+4. **Deploy Vault:**
+   - Follow the instructions in the respective directory's README.
 
-## Usage
+## Security Best Practices
+- **Always use TLS** in production.
+- **Never store unencrypted secrets** in configs or code.
+- **Restrict network access** to Vault.
+- **Use a secure storage backend** (Raft, Consul, etcd) for production.
+- **Rotate keys and certificates** regularly.
+- **Audit Vault access** and enable audit logging.
 
-Refer to the `docs/usage.md` file and the README within specific deployment method directories (if included) for instructions.
+---
 
-## Contributing
-
-Please refer to the `CONTRIBUTING.md` if included. 
+This template is intended as a starting point. Review and adapt all configurations to your environment and security requirements. 
